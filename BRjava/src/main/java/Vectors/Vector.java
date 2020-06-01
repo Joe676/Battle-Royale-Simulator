@@ -91,4 +91,8 @@ public class Vector {
 	public Vector copy() {
 		return new Vector(this.x, this.y);
 	}
+	
+	public String toString() {
+		return "("+this.x+", "+this.y+")";
+	}
 }

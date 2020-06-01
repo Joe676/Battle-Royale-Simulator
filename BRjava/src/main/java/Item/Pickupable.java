@@ -1,5 +1,7 @@
 package Item;
 
+import Agents.Agent;
+
 public interface Pickupable {
-	public Item pickUp();
+	public Item pickUp(Agent owner);
 }

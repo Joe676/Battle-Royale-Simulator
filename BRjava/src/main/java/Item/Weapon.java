@@ -142,4 +142,12 @@ public abstract class Weapon extends Item implements Shootable{
 		
 		return;
 	}
+	
+	@Override
+	public Item pickUp(Agent owner) {
+		owner.setWeapon(this);
+		this.setIsOnMap(false);
+		this.setOwner(owner);
+		return this;
+	}
 }

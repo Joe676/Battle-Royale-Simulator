@@ -42,4 +42,8 @@ public class Wall{
 		
 		return new Vector(closestX, closestY);
 	}
+	
+	public boolean isPointInside(Vector point) {
+		return (this.getClosestPoint(point).getX()==point.getX() && this.getClosestPoint(point).getY() == point.getY());
+	}
 }

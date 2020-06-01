@@ -16,37 +16,42 @@ import Simulation.Simulation;
 import Vectors.Vector;
 
 public class MyPanel extends JPanel implements ActionListener{
-	Timer tm = new Timer(25, this);
+	Timer tm = new Timer(5, this);//Timer for invoking steps of the simulation
 	
-	Vector testPt;
+	Vector testPt;//Point for testing movement behaviours
+	private int tickNumber = 0;
 	
-	private Simulation sim;
+	private Simulation sim;//Main simulation
 	
-	public MyPanel() {
-		this.sim = new Simulation(30, 20, 600, 600);
-        tm.start();
+	public MyPanel(int width, int height, int playerCount, int wallCount, int gSpeed, int zSpeed) {
+		//this.setBackground(new Color(204, 255, 204));
+		//this.sim = new Simulation(30, 40, 600, 600, 9, 1);
+		this.setPreferredSize(new Dimension(width, height));
+        this.sim = new Simulation(playerCount, wallCount, width, height, gSpeed, zSpeed);
+		tm.start();
 
-    	addMouseListener(new MouseAdapter() {
+    	addMouseListener(new MouseAdapter() {//testing movement and shooting
             public void mousePressed(MouseEvent e) {
             	//movePt(e.getX(), e.getY());
-            	shoot();
+            	//shoot();
             }
         });
 	}
 	
-	public Dimension getPreferredSize() {
-        return new Dimension(600,600);
-    }
+	//public Dimension getPreferredSize() {
+      //  return new Dimension(600,600);
+    //}
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		sim.step();
-		repaint();
+		tickNumber++;
+		sim.step(tickNumber);//Simulation step
+		repaint();//Refreshing window
 	}
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        sim.show(g);
+        sim.show(g);//visualising current simulation state
     	if(testPt!=null) {
     		g.setColor(Color.BLUE);
     		g.fillOval((int)testPt.getX(), (int)testPt.getY(), 2, 2);

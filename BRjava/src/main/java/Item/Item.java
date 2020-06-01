@@ -1,5 +1,7 @@
 package Item;
 
+import java.awt.Graphics;
+
 import Agents.Agent;
 import Vectors.Vector;
 
@@ -19,12 +21,12 @@ public abstract class Item implements Pickupable {
 	}
 	
 	public Item(Agent owner) {
-		this.isOnMap = false;
+		this.isOnMap = (owner!=null);
 		this.owner = owner;
 	}
 	
 	public Vector getPos() {
-		return this.pos;
+		return this.pos.copy();
 	}
 	
 	public void setPos(Vector pos) {
@@ -42,5 +44,11 @@ public abstract class Item implements Pickupable {
 	public Agent getOwner() {
 		return this.owner;
 	}
+	
+	public void setOwner(Agent owner) {
+		this.owner = owner;
+	}
+	
+	public abstract void show(Graphics g);
 	
 }
