@@ -6,7 +6,20 @@ import java.util.List;
 import Agents.Agent;
 import Wall.Wall;
 
+/**
+ * Class encapsulating raycasting methods
+ * @author Jozef Bossowski
+ *
+ */
 public class Raycast {
+	/**
+	 * Casts a ray onto a segment
+	 * @param from Point from which the ray starts
+	 * @param dir Vector pointing in direction of the ray
+	 * @param A First end of the segment
+	 * @param B Second end of the segment
+	 * @return Point at which ray intersects with segment, null if no intersection
+	 */
 	private static Vector castOnSegment(Vector from, Vector dir, Vector A, Vector B) {//returns ray's intersection with a segment, null if no intersection is found
 		//https://www.youtube.com/watch?v=TOEi6T2mtHo
 		dir.add(from);
@@ -28,6 +41,13 @@ public class Raycast {
 		return null;
 	}
 	
+	/**
+	 * Casts a ray onto a wall
+	 * @param from Point from which the ray starts
+	 * @param dir Vector pointing in the direction of the ray
+	 * @param wall wall to be checked against ray
+	 * @return Closest point at which ray intersects a wall
+	 */
 	public static Vector cast(Vector from, Vector dir, Wall wall) {//returns closest intersection with a wall
 		//create a list of wall faces - segments
 		List<Vector> points = new ArrayList<Vector>();
@@ -56,6 +76,13 @@ public class Raycast {
 		return closestPoint;
 	}
 	
+	/**
+	 * Casts a ray on an agent
+	 * @param from Point from which the ray starts
+	 * @param dir Vector pointing in the direction of the ray
+	 * @param agent Agent to be checked against ray
+	 * @return true if ray hits agent, false otherwise
+	 */
 	public static boolean cast(Vector from, Vector dir, Agent agent) {//checks whether agent got hit by a raycast (for shooting)
 		//https://mathworld.wolfram.com/Circle-LineIntersection.html
 
@@ -80,6 +107,13 @@ public class Raycast {
 		//return false;
 	}
 	
+	/**
+	 * Checks if point is inside a circle
+	 * @param pt Point to be checked
+	 * @param c Center of the circle
+	 * @param r Radius of the circle
+	 * @return true if point is inside, false otherwise
+	 */
 	private static boolean pointCircle(Vector pt, Vector c, double r) {
 		Vector diff = pt.copy();
 		diff.sub(c);
