@@ -20,6 +20,11 @@ import Item.Weapon;
 import Vectors.Vector;
 import Wall.Wall;
 
+/**
+ * Class representing map, storing walls, agents and items and managing ring
+ * @author Jozef Bossowski
+ *
+ */
 public class Map {
 	private int width;//width of the arena
 	private int height;//height of the arena
@@ -36,6 +41,14 @@ public class Map {
 	private List<Integer> toKill = new ArrayList<Integer>();//list of Agents that died this frame
 	public Agent testSubject;//Agent for testing different behaviours
 	
+	/**
+	 * Constructs and initializes map object
+	 * @param playerCount Number of players on the map in the beginning 
+	 * @param wallCount	Number of inside walls on the map
+	 * @param width Width of the arena
+	 * @param height Height of the arena
+	 * @param zoneSpeed How many ticks between zone shrinking
+	 */
 	public Map(int playerCount, int wallCount, int width, int height, int zoneSpeed) {
 		this.playerCount = playerCount;
 		
@@ -106,14 +119,13 @@ public class Map {
 			
 			Agents.add(new Agent(rX, rY, this, i));
 			
-			//Temporary
-			//Agents.get(i).setWeapon(new Pistol(Agents.get(i)));
-			for(int j = 0; j<5; j++) {
-				Agents.get(i).wander();
-			}
 		}
 	}
 	
+	/**
+	 * Generating a random point on the map for placing an item, out of the walls
+	 * @return A point at which an item is not inside any wall
+	 */
 	private Vector randomItemPoint() {
 		double x = Math.random() *(this.width-10)+5;
 		double y = Math.random() *(this.height-10)+5;
@@ -126,18 +138,34 @@ public class Map {
 		return new Vector(x, y);
 	}
 	
+	/**
+	 * 
+	 * @return List of items on the map
+	 */
 	public List<Item> getItems() {//returns Items currently on the map
 		return this.Items;
 	}
 
+	/**
+	 * 
+	 * @return List of agents on the map
+	 */
 	public List<Agent> getAgents() {//returns Agents currently on the map
 		return this.Agents;
 	}
 	
+	/**
+	 *  
+	 * @return List of walls on the map
+	 */
 	public List<Wall> getWalls() {//returns Walls on the map
 		return this.Walls;
 	}
 	
+	/**
+	 * Updates game state saved on the map
+	 * @param current tick number
+	 */
 	public void update(int tick) {//Step and updating the game state
 		//Removing Agents who died last frame
 		Collections.sort(this.toKill);
@@ -181,6 +209,10 @@ public class Map {
 		}
 	}
 	
+	/**
+	 * Drawing current gamestate
+	 * @param g Where the graphics are going to be drawn
+	 */
 	public void show(Graphics g) {//Visualising game state
 		if(this.testSubject != null) {//testing environment
 			this.testSubject.show(g);
@@ -218,18 +250,35 @@ public class Map {
 		g.drawOval((int)(this.ringCenter.getX()-this.ringRadius-10), (int)(this.ringCenter.getY()-this.ringRadius-10), (int)((this.ringRadius+10)*2), (int)((this.ringRadius+10)*2));
 	}
 
+	/**
+	 * Managing an agent's death
+	 * @param corpse The dead agent
+	 */
 	public void agentDied(Agent corpse) {
 		this.toKill.add(this.Agents.indexOf(corpse));
 	}
 
+	/**
+	 * Adding an item to the map
+	 * @param item Item to be added
+	 */
 	public void addItem(Item item) {
 		this.Items.add(item);
 	}
 
+	/**
+	 * Removing an item from the map
+	 * @param item Item to be removed
+	 */
 	public void removeItem(Item item) {
 		this.Items.remove(item);
 	}
 	
+	/**
+	 * Writing current game state to a text file
+	 * @param fileName Name of the save file
+	 * @param tick Number of the current tick
+	 */
 	public void print(String fileName, int tick) {
 		try{
 			FileWriter writer = new FileWriter(fileName, true);

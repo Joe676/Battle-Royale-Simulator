@@ -6,8 +6,16 @@ import java.awt.Graphics;
 import Agents.Agent;
 import Vectors.Vector;
 
+/**
+ * Class representing a Shotgun
+ * @author Jozef Bossowski
+ *
+ */
 public class Shotgun extends Weapon{
-	
+	/**
+	 * Constructs and initializes agent's shotgun
+	 * @param owner Agent who is the owner of the shotgun
+	 */
 	public Shotgun(Agent owner) {
 		super(owner);
 		this.setDamage(5);
@@ -22,6 +30,11 @@ public class Shotgun extends Weapon{
 		this.setBulletSpread(spread);
 	}
 	
+	/**
+	 * Constructs and initializes a shotgun located at a specified point of the map
+	 * @param x X coordinate of the point
+	 * @param y Y coordinate of the point
+	 */
 	public Shotgun(double x, double y) {
 		this(null);
 		this.setPos(new Vector(x, y));
@@ -34,6 +47,7 @@ public class Shotgun extends Weapon{
 		g.fillRect((int)this.getPos().getX(), (int)this.getPos().getY(), 2, 4);
 	}
 	
+	@Override
 	public String toString() {
 		return "Shotgun";
 	}

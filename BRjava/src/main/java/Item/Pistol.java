@@ -6,8 +6,17 @@ import java.awt.Graphics;
 import Agents.Agent;
 import Vectors.Vector;
 
+/**
+ * Class representing a kind of weapon
+ * @author Jozef Bossowski
+ *
+ */
 public class Pistol extends Weapon {
 
+	/**
+	 * Constructs and initializes a pistol owned by an agent
+	 * @param owner Agent whose weapon this is
+	 */
 	public Pistol(Agent owner) {
 		super(owner);
 		this.setDamage(6);
@@ -22,6 +31,11 @@ public class Pistol extends Weapon {
 		this.setBulletSpread(spread);
 	}
 	
+	/**
+	 * Constructs and initializes pistol at a specified point on the map
+	 * @param x X coordinate of the point
+	 * @param y Y coordinate of the point
+	 */
 	public Pistol(double x, double y) {
 		this(null);
 		this.setPos(new Vector(x, y));
@@ -34,6 +48,7 @@ public class Pistol extends Weapon {
 		g.fillRect((int)this.getPos().getX(), (int)this.getPos().getY(), 2, 4);
 	}
 	
+	@Override
 	public String toString() {
 		return "Pistol";
 	}

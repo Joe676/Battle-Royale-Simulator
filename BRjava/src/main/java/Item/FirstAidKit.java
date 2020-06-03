@@ -6,17 +6,22 @@ import java.awt.Graphics;
 import Agents.Agent;
 import Vectors.Vector;
 
+/**
+ * Class representing first aid kits
+ * @author Jozef Bossowski
+ *
+ */
 public class FirstAidKit extends Item{
 	
 	private static final int HP = 30;
-
-	public FirstAidKit(Agent owner) {
-		super(owner);
-	}
 	
+	/**
+	 * Constructs and initializes first aid kit at a specified point of the map
+	 * @param x X coordinate of the point
+	 * @param y Y coordinate of the point
+	 */
 	public FirstAidKit(double x, double y) {
-		this(null);
-		this.setPos(new Vector(x, y));
+		super(x, y);
 	}
 
 	@Override
