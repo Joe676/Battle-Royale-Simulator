@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import Agents.Agent;
-import Vectors.Vector;
 
 /**
  * Class representing first aid kits

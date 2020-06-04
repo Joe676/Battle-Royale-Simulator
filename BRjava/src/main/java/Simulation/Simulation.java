@@ -3,11 +3,7 @@ package Simulation;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
-import Agents.Agent;
 import Map.Map;
-import Vectors.Vector;
 
 /**
  * Class that encapsulates all simulation code
@@ -16,7 +12,6 @@ import Vectors.Vector;
  */
 public class Simulation {
 	private Map map;
-	private int pCount;
 	private int speed;
 	private File saveFile;
 	private String fileName;
@@ -32,7 +27,6 @@ public class Simulation {
 	 */
 	public Simulation(int playerCount, int wallCount, int width, int height, int speed, int zoneSpeed) {
 		this.speed = 11 - speed;//speed ranging from 1-10 - update every # ticks
-		this.pCount = playerCount;
 		map = new Map(playerCount, wallCount, width, height, zoneSpeed);
 		this.createFile();
 	}
@@ -56,14 +50,6 @@ public class Simulation {
 	 */
 	public void show(Graphics g) {//Visualising simulation
 		this.map.show(g);
-	}
-	
-	/**
-	 * 
-	 * @return List of the Items on the map
-	 */
-	public List getItems(){
-		return this.map.getItems();
 	}
 	
 	/**

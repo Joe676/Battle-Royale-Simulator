@@ -2,7 +2,6 @@ package Map;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import Item.Item;
 import Item.Pistol;
 import Item.Rifle;
 import Item.Shotgun;
-import Item.Weapon;
 import Vectors.Vector;
 import Wall.Wall;
 

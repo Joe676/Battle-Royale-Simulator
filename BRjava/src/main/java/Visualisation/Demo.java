@@ -87,5 +87,7 @@ public class Demo {
 			System.out.println("Enter a value between 1 and 10: ");
 			zSpeed = scan.nextInt();
 		}
+		
+		scan.close();
 	}
 }
