@@ -164,7 +164,7 @@ public class Map {
 	 * Updates game state saved on the map
 	 * @param current tick number
 	 */
-	public void update(int tick) {//Step and updating the game state
+	public boolean update(int tick) {//Step and updating the game state
 		//Removing Agents who died last frame
 		Collections.sort(this.toKill);
 		int h = -1;
@@ -179,11 +179,11 @@ public class Map {
 		//checking end conditions
 		if(this.Agents.size()==1) {
 			System.out.println("We have a winner! "+this.Agents.get(0));
-			return;
+			return true;
 		}
 		if(this.Agents.size()<1) {
 			System.out.println("We have no winner! :(");
-			return;
+			return true;
 		}
 		
 		//Shrinking Zone
@@ -205,6 +205,7 @@ public class Map {
 				agent.seek(this.ringCenter, 5);
 			}
 		}
+		return false;
 	}
 	
 	/**

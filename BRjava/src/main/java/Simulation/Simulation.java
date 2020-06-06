@@ -15,6 +15,7 @@ public class Simulation {
 	private int speed;
 	private File saveFile;
 	private String fileName;
+	private boolean done = false;
 	
 	/**
 	 * Constructs and initializes the simulation
@@ -39,8 +40,13 @@ public class Simulation {
 	public void step(int tick) {//Step of the simulation
 		
 		if(tick%this.speed == 0) {
-			this.print(tick);
-			this.map.update(tick);
+			if(!this.done) {
+				this.print(tick);
+				this.done = this.map.update(tick);
+				if(this.done) {
+					this.print(tick);
+				}
+			}
 		}
 	}
 	
